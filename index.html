@@ -15,8 +15,8 @@
                 <span class="Y"></span>
             </button>
         </header>
-        <nav class="cabecalho">
-            <input  type="text" name="" id="">
+        <nav class="cabecalho" id="">
+            <input type="text" name="" id="desctitulo">
         </nav>
         <section>
             <aside class="logo">
@@ -25,19 +25,19 @@
         
             <div class="containermeio">
                 <p>Código</p>
-                <input class="codigo" type="text" name="codigo" id="codigo">
+                <input class="codigo" type="text" id="barcode" oninput="moveCursorToQuantity()">
                 <p>Quantidade</p>
-                <input class="quantidade" type="text" name="quantidade" id="">
+                <input class="quantidade" type="text" id="quantity" onkeypress="calculateTotal(event)">
                 <p>Preço Unitário</p>
-                <input class="precouni" type="text" name="preço unitario" id="">
+                <input class="precouni" type="text" step="0.01" id="unitPrice" value="5.30" readonly>
                 <p>Preço Total</p>
-                <input class="precototal" type="text" name="preço total" id="">
+                <input class="precototal" type="text" step="0.01" id="totalPrice" readonly>
                 
             </div>
         
-            <aside class="cupom">
-            
-            </aside>
+            <textarea class="cupom"  id="receipt" rows="2" readonly>
+                            
+            </textarea>
         </section>
 
         <footer>
@@ -47,9 +47,34 @@
             </div>
             <div>
                 <p class="pfooter">Subtotal</p>
-                <input class="subtotal" type="text" name="" id="">
+                <div class="subtotal" type="text" id="subtotal">R$ 0,00</div>
             </div>
         </footer>
     </main>
+
+    <script>
+        function moveCursorToQuantity() {
+           document.getElementById('quantity').focus()
+        }
+
+        function calculateTotal(event) {
+            if (event.key === 'Enter') {
+                const a = 'ARROZ BRANCO NAMORADO 1KG'
+                const b = 'CAFE KIMIMO SANTA CLARA 1KG'
+                const quantity = parseFloat(document.getElementById('quantity').value)
+                const unitPrice = parseFloat(document.getElementById('unitPrice').value)
+                const totalPrice = quantity * unitPrice
+                document.getElementById('totalPrice').value = totalPrice.toFixed(2)
+                document.getElementById('subtotal').innerText = `R$ ${totalPrice.toFixed(2)}`
+                document.getElementById('desctitulo').value = b
+                document.getElementById('receipt').value = `01 8959 ARROZ BRANCO NAMORADO 1KG \n ${quantity}UN X ${unitPrice.toFixed(2)} total: R$ ${totalPrice.toFixed(2)}`
+            }
+        }
+
+        function finalizeSale() {
+
+            alert('Venda finalizada!')
+        }
+    </script>
 </body>
 </html>

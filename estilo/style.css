@@ -15,8 +15,8 @@ header {
     font-size: 40px;
     text-transform: uppercase;
     text-align: center;
-    background-color: #162b7d;
-    color: white;
+    /* background-color: #162b7d; */
+    
     border: 2px solid gray;
     border-radius: 8px;
     position: relative;
@@ -79,7 +79,8 @@ p {  /* todos os parafrafos */
 }
 
 .cupom {  
-    background-color: white;
+    text-align: end;
+    font-size: 20px;
     border-radius: 8px;
     border: 2px solid #646363;
     position: relative;

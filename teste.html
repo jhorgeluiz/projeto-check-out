@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
+    <style>
+        .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .field {
+            margin-bottom: 10px;
+        }
+        .label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input {
+            width: 100%;
+            padding: 5px;
+        }
+        .subtotal {
+            font-size: 1.5em;
+            text-align: right;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="field">
+        <label class="label" for="barcode">Código</label>
+        <input class="input" type="text" id="barcode" oninput="moveCursorToQuantity()">
+    </div>
+
+
+
+
+    <div class="field">
+        <label class="label" for="quantity">Quantidade</label>
+        <input class="input" type="number" id="quantity" onkeypress="calculateTotal(event)">
+    </div>
+    <div class="field">
+        <label class="label" for="unitPrice">Preço Unitário</label>
+        <input class="input" type="number" step="0.01" id="unitPrice" value="5.30" readonly>
+    </div>
+    <div class="field">
+        <label class="label" for="totalPrice">Preço Total</label>
+        <input class="input" type="number" step="0.01" id="totalPrice" readonly>
+    </div>
+    <div class="subtotal" id="subtotal">Subtotal: R$ 0,00</div>
+    <div class="field">
+        <textarea class="input" id="receipt" rows="5" readonly></textarea>
+    </div>
+    <button class="btn" onclick="finalizeSale()">Venda</button>
+</div>
+
+<script>
+function moveCursorToQuantity() {
+    document.getElementById('quantity').focus();
+}
+
+function calculateTotal(event) {
+    if (event.key === 'Enter') {
+        const quantity = parseFloat(document.getElementById('quantity').value);
+        const unitPrice = parseFloat(document.getElementById('unitPrice').value);
+        const totalPrice = quantity * unitPrice;
+        document.getElementById('totalPrice').value = totalPrice.toFixed(2);
+        document.getElementById('subtotal').innerText = `Subtotal: R$ ${totalPrice.toFixed(2)}`;
+        document.getElementById('receipt').value = `1 X ARROZ BRANCO 1KG\nQuantidade: ${quantity}\nPreço Unitário: R$ ${unitPrice.toFixed(2)}\nPreço Total: R$ ${totalPrice.toFixed(2)}`;
+    }
+}
+
+function finalizeSale() {
+    alert('Venda finalizada!');
+}
+</script>
+
+</body>
+</html>
