@@ -25,17 +25,16 @@
         
             <div class="containermeio">
                 <p>Código</p>
-                <input class="codigo" type="text" id="barcode" oninput="moveCursorToQuantity()">
+                <input class="codigo" type="text" id="codigo" oninput="cursor_para_quantidade()">
                 <p>Quantidade</p>
-                <input class="quantidade" type="text" id="quantity" onkeypress="calculateTotal(event)">
+                <input class="quantidade" type="text" id="quantidade" onkeypress="calculartotal(event)">
                 <p>Preço Unitário</p>
-                <input class="precouni" type="text" step="0.01" id="unitPrice" value="5.30" readonly>
+                <input class="precouni" type="text" step="0.01" id="preco_uni" value="5.30" readonly>
                 <p>Preço Total</p>
-                <input class="precototal" type="text" step="0.01" id="totalPrice" readonly>
-                
+                <input class="precototal" type="text" step="0.01" id="preco_total" readonly>
             </div>
         
-            <textarea class="cupom"  id="receipt" rows="2" readonly disabled>
+            <textarea class="cupom"  id="cupom" rows="2" readonly disabled>
                             
             </textarea>
         </section>
@@ -43,38 +42,68 @@
         <footer>
             <div>
                 <p class="pfooter">F12 - Menu Fiscal</p>
-                <input class="venda" type="text" name="" id="Menufiscal">
+                <div class="venda" type="text" name="" id="menufiscal"></div>
             </div>
             <div>
                 <p class="pfooter">Subtotal</p>
-                <div class="subtotal" type="text" id="subtotal">R$ 0,00</div>
+                <div class="subtotal" id="subtotal">R$ 0,00</div>
             </div>
         </footer>
     </main>
 
     <script>
-        function moveCursorToQuantity() {
-           document.getElementById('quantity').focus()
-        }
+        
+        // function cursor_para_quantidade() {
+        //    document.getElementById('quantidade').focus()
+        // } 
 
-        function calculateTotal(event) {
+        function calculartotal(event) {
             if (event.key === 'Enter') {
                 const a = 'ARROZ BRANCO NAMORADO 1KG'
                 const b = 'CAFE KIMIMO SANTA CLARA 1KG'
-                const quantity = parseFloat(document.getElementById('quantity').value)
-                const unitPrice = parseFloat(document.getElementById('unitPrice').value)
-                const totalPrice = quantity * unitPrice
-                document.getElementById('totalPrice').value = totalPrice.toFixed(2)
-                document.getElementById('subtotal').innerText = `R$ ${totalPrice.toFixed(2)}`
+                const quantidade = parseFloat(document.getElementById('quantidade').value)
+                const preco_uni = parseFloat(document.getElementById('preco_uni').value)
+                const preco_total = quantidade * preco_uni
+                document.getElementById('preco_total').value = preco_total.toFixed(2)
+                document.getElementById('subtotal').innerText = `R$ ${preco_total.toFixed(2)}`
                 document.getElementById('desctitulo').value = b
-                document.getElementById('receipt').value = `01 8959 ARROZ BRANCO NAMORADO 1KG \n ${quantity}UN X ${unitPrice.toFixed(2)} total: R$ ${totalPrice.toFixed(2)}`
+                document.getElementById('cupom').value = `01 8959 ARROZ BRANCO NAMORADO 1KG \n ${quantidade}UN X ${preco_uni.toFixed(2)} total: R$ ${preco_total.toFixed(2)}`
             }
+
+            
         }
 
-        function finalizeSale() {
+        document.addEventListener('keydown', function(event) {
+            let menufiscal = document.getElementById('menufiscal')
+            if (event.keyCode === 65) {
+                menufiscal.innerHTML = `Venda Aberta!`
+            }
+        })
+        
+        document.addEventListener('keydown', function(event) {
+            let menufiscal = document.getElementById('menufiscal')
+            if (event.keyCode === 70) {
+                let  codigo = document.getElementById('codigo').value = ''
+                let  quant = document.getElementById('quantidade').value = ''
+                let  preuni = document.getElementById('preco_uni').value = ''
+                let pretotal = document.getElementById('preco_total').value = ''
+                let subtotal = document.getElementById('subtotal')
+                let desctitu = document.getElementById('desctitulo').value = ''
+                let cup = document.getElementById('cupom').value = ''
 
-            alert('Venda finalizada!')
-        }
+                menufiscal.innerHTML = `Venda Finalizada!`
+                quant.innerHTML = ''
+                preuni.innerHTML = ''
+                pretotal.innerHTML = ''
+                subtotal.innerHTML = ''
+                desctitu.innerHTML = ''
+                cup.innerHTML = ''
+            }
+        })
+
+        
+            
+        
     </script>
 </body>
 </html>
