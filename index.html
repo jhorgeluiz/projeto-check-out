@@ -25,9 +25,9 @@
         
             <div class="containermeio">
                 <p>Código</p>
-                <input class="codigo" type="text" id="codigo" oninput="cursor_para_quantidade()">
+                <input class="codigo" type="text" id="codigo" onkeypress="calculartotal(event)">
                 <p>Quantidade</p>
-                <input class="quantidade" type="text" id="quantidade" onkeypress="calculartotal(event)">
+                <input class="quantidade" type="text" id="quantidade" value="1" oninput="cursor_para_codigo()">
                 <p>Preço Unitário</p>
                 <input class="precouni" type="text" step="0.01" id="preco_uni" value="5.30" readonly>
                 <p>Preço Total</p>
@@ -53,8 +53,8 @@
 
     <script>
         
-        function cursor_para_quantidade() {
-           document.getElementById('quantidade').focus()
+        function cursor_para_codigo() {
+            document.getElementById('codigo').focus()
         } 
 
         function calculartotal(event) {
@@ -74,9 +74,11 @@
         }
 
         document.addEventListener('keydown', function(event) {
+            
             let menufiscal = document.getElementById('menufiscal')
             if (event.keyCode === 65) {
                 menufiscal.innerHTML = `Venda Aberta!`
+                
             }
         })
         
