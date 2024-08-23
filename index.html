@@ -79,7 +79,7 @@
             }
 
             const a = 'ARROZ BRANCO NAMORADO 1KG'
-            const b = 'CAFE KIMIMO SANTA CLARA 1KG'
+            const b = 'CAFE KIMIMO SANTA CLARA 500G'
             const quantidade = parseFloat(document.getElementById('quantidade').value)
             const preco_uni = parseFloat(document.getElementById('preco_uni').value)
             const preco_total = quantidade * preco_uni
@@ -87,7 +87,7 @@
             document.getElementById('preco_total').value = preco_total.toFixed(2)
             document.getElementById('subtotal').innerText = `R$ ${preco_total.toFixed(2)}`
             document.getElementById('desctitulo').value = b
-            document.getElementById('cupom').value = `01 8959 ARROZ BRANCO NAMORADO 1KG \n ${quantidade}UN X ${preco_uni.toFixed(2)} total: R$ ${preco_total.toFixed(2)}` 
+            document.getElementById('cupom').value = `01 8959 CAFE KIMIMO SANTA CLARA 500G \n ${quantidade}UN X ${preco_uni.toFixed(2)} total: R$ ${preco_total.toFixed(2)}` 
         }
 
         document.addEventListener('keydown', function(event) {
