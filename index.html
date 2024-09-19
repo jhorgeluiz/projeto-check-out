@@ -33,9 +33,9 @@
                 <input class="precototal" type="text" step="0.01" id="preco_total" readonly>
             </div>
         
-            <textarea class="cupom"  id="cupom" rows="2" readonly disabled>
-                            
+            <textarea class="cupom"  id="cupom" rows="2" readonly disabled>    
             </textarea>
+
         </section>
 
         <footer>
@@ -48,6 +48,7 @@
                 <div class="subtotal" id="subtotal">R$ 0,00</div>
             </div>
         </footer>
+
     </main>
 
     <script>
@@ -67,7 +68,7 @@
         document.getElementById('quantidade').addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 document.getElementById('codigo').focus()
-                document.getElementById('codigo').select()
+                document.getElementById('codigo').select( )
             }
         })
 
