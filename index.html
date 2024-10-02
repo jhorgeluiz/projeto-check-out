@@ -75,20 +75,28 @@
         })
 
         function calculartotal (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault()
+            let cod = document.getElementById('codigo')
+            if (cod == a) {
+                // .innerHTML = 'ARROZ BRANCO NAMORADO 1KG '
+            }
+            if (cod == b) {
+                desctitulo.innerHTML = 'CAFE KIMIMO SANTA CLARA 500G '
             }
 
-            const a =  'ARROZ BRANCO NAMORADO 1KG '
-            const b =  'CAFE KIMIMO SANTA CLARA 500G '
-            const quantidade = parseFloat(document.getElementById('quantidade').value)
-            const preco_uni = parseFloat(document.getElementById('preco_uni').value)
-            const preco_total = quantidade * preco_uni
+            if (event.key === 'Enter') {
+                event.preventDefault()
             
-            document.getElementById('preco_total').value = preco_total.toFixed(2)
-            document.getElementById('subtotal').innerText = `R$ ${preco_total.toFixed(2)}`
-            document.getElementById('desctitulo').value = `${b}`
-            document.getElementById('cupom').value = `${a} \n ${quantidade}UN X ${preco_uni.toFixed(2)} total: R$ ${preco_total.toFixed(2)} ` 
+                // const a =  'ARROZ BRANCO NAMORADO 1KG '
+                // const b =  'CAFE KIMIMO SANTA CLARA 500G '
+                const quantidade = parseFloat(document.getElementById('quantidade').value)
+                const preco_uni = parseFloat(document.getElementById('preco_uni').value)
+                const preco_total = quantidade * preco_uni
+                
+                document.getElementById('preco_total').value = preco_total.toFixed(2)
+                document.getElementById('subtotal').innerText = `R$ ${preco_total.toFixed(2)}`
+                document.getElementById('desctitulo').value 
+                document.getElementById('cupom').value =  `\n ${quantidade}UN X ${preco_uni.toFixed(2)} total: R$ ${preco_total.toFixed(2)} ` 
+            }
         }
 
         document.addEventListener
