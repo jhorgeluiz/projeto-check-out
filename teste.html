@@ -74,7 +74,7 @@ function moveCursorToQuantity() {
     document.getElementById('quantity').focus();
 }
 
-function calculateTotal(event) {
+function calculateTotal(event ) {
     if (event.key === 'Enter') {
         const quantity = parseFloat(document.getElementById('quantity').value);
         const unitPrice = parseFloat(document.getElementById('unitPrice').value);
