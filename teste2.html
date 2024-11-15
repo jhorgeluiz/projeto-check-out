@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDV</title>
+    <link rel="stylesheet" href="estilo/style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <button class="button">
+                <span class="X"></span>
+                <span class="Y"></span>
+            </button>
+        </header>
+        <nav class="cabecalho">
+            <input type="text" name="" id="desctitulo" disabled>
+        </nav>
+        <section>
+            <aside class="logo">
+                <img src="estilo/carrinho.png" alt="Carrinho">
+            </aside>
+        
+            <div class="containermeio">
+                <p>Código</p>
+                <input class="codigo" type="text" id="codigo" oninput="cursor_para_quant()">
+                <p>Quantidade</p>
+                <input class="quantidade" type="number" id="quantidade" value="1" onkeypress="calculartotal(event)">
+                <p>Preço Unitário</p>
+                <input class="precouni" type="text" id="preco_uni" value="5.30" readonly>
+                <p>Preço Total</p>
+                <input class="precototal" type="text" id="preco_total" readonly>
+            </div>
+        
+            <textarea class="cupom" id="cupom" rows="2" readonly></textarea>
+        </section>
+
+        <footer>
+            <div>
+                <p class="pfooter">F12 - Menu Fiscal</p>
+                <div class="venda" id="menufiscal"></div>
+            </div>
+            <div>
+                <p class="pfooter">Subtotal</p>
+                <div class="subtotal" id="subtotal">R$ 0,00</div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        function cursor_para_quant() {
+    const quantidadeField = document.getElementById('quantidade');
+    quantidadeField.focus();
+    quantidadeField.select();
+}
+
+// Trocar o foco entre os campos com Enter
+document.getElementById('codigo').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const quantidadeField = document.getElementById('quantidade');
+        quantidadeField.focus();
+        quantidadeField.select();
+    }
+});
+
+document.getElementById('quantidade').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const codigoField = document.getElementById('codigo');
+        codigoField.focus();
+        codigoField.select();
+    }
+});
+
+// Função para calcular o total
+function calculartotal(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+
+        const codigo = document.getElementById('codigo').value;
+        const quantidade = parseFloat(document.getElementById('quantidade').value);
+        const precoUni = parseFloat(document.getElementById('preco_uni').value);
+        const precoTotal = quantidade * precoUni;
+
+        // Atualizar os campos de preço total e subtotal
+        document.getElementById('preco_total').value = precoTotal.toFixed(2);
+        document.getElementById('subtotal').innerText = `R$ ${precoTotal.toFixed(2)}`;
+
+        // Atualizar o título e cupom
+        const descricaoTitulo = document.getElementById('desctitulo');
+        const cupom = document.getElementById('cupom');
+
+        if (codigo === 'a') {
+            descricaoTitulo.value = 'ARROZ BRANCO NAMORADO 1KG';
+        } else if (codigo === 'b') {
+            descricaoTitulo.value = 'CAFÉ KIMIMO';
+        } else {
+            descricaoTitulo.value = 'Produto desconhecido';
+        }
+
+        cupom.value = `${quantidade} UN x R$ ${precoUni.toFixed(2)} = R$ ${precoTotal.toFixed(2)}\n`;
+    }
+}
+
+// Menu fiscal e reset com atalhos
+document.addEventListener('keydown', function(event) {
+    const menufiscal = document.getElementById('menufiscal');
+
+    if (event.key === 'A') { // Atalho para abrir venda
+        event.preventDefault();
+        document.getElementById('codigo').focus();
+        menufiscal.innerText = 'Venda Aberta!';
+    } else if (event.key === 'F') { // Atalho para finalizar venda
+        event.preventDefault();
+
+        // Resetar os campos
+        document.getElementById('codigo').value = '';
+        document.getElementById('quantidade').value = '1';
+        document.getElementById('preco_uni').value = '5.30';
+        document.getElementById('preco_total').value = '';
+        document.getElementById('subtotal').innerText = 'R$ 0,00';
+        document.getElementById('desctitulo').value = '';
+        document.getElementById('cupom').value = '';
+
+        menufiscal.innerText = 'Venda Finalizada!';
+    }
+});
+
+    </script>
+</body>
+</html>
