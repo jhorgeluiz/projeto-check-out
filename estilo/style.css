@@ -77,14 +77,18 @@ p {  /* todos os parafrafos */
 }
 
 .cupom {  
-    text-align: end;
-    font-size: 20px;
+    text-align: justify;
+    font-size: 15px;
     border-radius: 8px;
     border: 2px solid #646363;
     position: relative;
     width: 370px;
     height: 330px;
+    resize: none;
+    overflow-y: scroll;
 }
+
+
 
 footer {  /* container */
     position: relative;

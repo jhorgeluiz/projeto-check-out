@@ -15,7 +15,7 @@
             </button>
         </header>
         <nav class="cabecalho">
-            <input type="text" name="" id="desctitulo" disabled>
+            <input type="text" id="desctitulo" disabled>
         </nav>
         <section>
             <aside class="logo">
@@ -24,16 +24,16 @@
         
             <div class="containermeio">
                 <p>Código</p>
-                <input class="codigo" type="text" id="codigo" oninput="cursor_para_quant()">
+                <input class="codigo" type="text" id="codigo" oninput="atualizarItem()">
                 <p>Quantidade</p>
-                <input class="quantidade" type="number" id="quantidade" value="1" onkeypress="calculartotal(event)">
+                <input class="quantidade" type="text" id="quantidade" value="1" onkeypress="adicionarItem(event)">
                 <p>Preço Unitário</p>
-                <input class="precouni" type="text" id="preco_uni" value="5.30" readonly>
+                <input class="precouni" type="text" id="preco_uni" disabled>
                 <p>Preço Total</p>
-                <input class="precototal" type="text" id="preco_total" readonly>
+                <input class="precototal" type="text" id="preco_total" disabled>
             </div>
         
-            <textarea class="cupom" id="cupom" rows="2" readonly></textarea>
+            <textarea class="cupom" id="cupom" rows="10" disabled></textarea>
         </section>
 
         <footer>
@@ -49,83 +49,103 @@
     </main>
 
     <script>
-        function cursor_para_quant() {
-    const quantidadeField = document.getElementById('quantidade');
-    quantidadeField.focus();
-    quantidadeField.select();
-}
+        // Cadastro de produtos
+        const produtos = {
+            "1001": {cod: "1001", nome: "ARROZ BRANCO 1KG", preco: 5.30 },
+            "1002": {cod: "1002", nome: "FEIJÃO CARIOCA 1KG", preco: 6.80 },
+            "1003": {cod: "1003", nome: "CAFÉ 500G", preco: 8.50 },
+            "1004": {cod: "1004", nome: "AÇÚCAR REFINADO 1KG", preco: 4.20 },
+            "1005": {cod: "1005", nome: "ÓLEO DE SOJA 900ML", preco: 7.00 },
+            "1006": {cod: "1006", nome: "MACARRÃO 500G", preco: 3.50 },
+            "1007": {cod: "1007", nome: "FARINHA DE TRIGO 1KG", preco: 4.50 },
+            "1008": {cod: "1008", nome: "MARGARINA 500G", preco: 6.00 },
+            "1009": {cod: "1009", nome: "LEITE INTEGRAL 1L", preco: 5.00 },
+            "1010": {cod: "1010", nome: "BISCOITO RECHEADO 200G", preco: 3.00 }
+        };
 
-// Trocar o foco entre os campos com Enter
-document.getElementById('codigo').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        const quantidadeField = document.getElementById('quantidade');
-        quantidadeField.focus();
-        quantidadeField.select();
-    }
-});
+        // Subtotal acumulado
+        let subtotal = 0
 
-document.getElementById('quantidade').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        const codigoField = document.getElementById('codigo');
-        codigoField.focus();
-        codigoField.select();
-    }
-});
+        // Atualizar informações do item
+        function atualizarItem() {
+            const codigo = document.getElementById("codigo").value
+            const quantidade = parseFloat(document.getElementById("quantidade").value)
+            const produto = produtos[codigo]
 
-// Função para calcular o total
-function calculartotal(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-
-        const codigo = document.getElementById('codigo').value;
-        const quantidade = parseFloat(document.getElementById('quantidade').value);
-        const precoUni = parseFloat(document.getElementById('preco_uni').value);
-        const precoTotal = quantidade * precoUni;
-
-        // Atualizar os campos de preço total e subtotal
-        document.getElementById('preco_total').value = precoTotal.toFixed(2);
-        document.getElementById('subtotal').innerText = `R$ ${precoTotal.toFixed(2)}`;
-
-        // Atualizar o título e cupom
-        const descricaoTitulo = document.getElementById('desctitulo');
-        const cupom = document.getElementById('cupom');
-
-        if (codigo === 'a') {
-            descricaoTitulo.value = 'ARROZ BRANCO NAMORADO 1KG';
-        } else if (codigo === 'b') {
-            descricaoTitulo.value = 'CAFÉ KIMIMO';
-        } else {
-            descricaoTitulo.value = 'Produto desconhecido';
+            if (produto) {
+                document.getElementById("desctitulo").value = produto.nome
+                document.getElementById("preco_uni").value = produto.preco.toFixed(2)
+                document.getElementById("preco_total").value = (produto.preco * quantidade).toFixed(2)
+            } else {
+                document.getElementById("desctitulo").value = ""
+                document.getElementById("preco_uni").value = ""
+                document.getElementById("preco_total").value = ""
+            }
         }
 
-        cupom.value = `${quantidade} UN x R$ ${precoUni.toFixed(2)} = R$ ${precoTotal.toFixed(2)}\n`;
-    }
-}
+        // Trocar o foco para o campo de quantidade ao pressionar Enter no campo de código
+        document.getElementById("codigo").addEventListener("keydown", function(event) {
+            if (event.keyCode === 32) {
+                const quantidadeField = document.getElementById("quantidade")
+                quantidadeField.focus()
+                quantidadeField.select()
+            }
+        })
 
-// Menu fiscal e reset com atalhos
-document.addEventListener('keydown', function(event) {
-    const menufiscal = document.getElementById('menufiscal');
+        // Adicionar item ao cupom fiscal
+        function adicionarItem(event) {
+            if (event.key === "Enter") {
+                const codigo = document.getElementById("codigo").value
+                const quantidade = parseFloat(document.getElementById("quantidade").value)
+                const produto = produtos[codigo]
 
-    if (event.key === 'A') { // Atalho para abrir venda
-        event.preventDefault();
-        document.getElementById('codigo').focus();
-        menufiscal.innerText = 'Venda Aberta!';
-    } else if (event.key === 'F') { // Atalho para finalizar venda
-        event.preventDefault();
+                if (produto && quantidade > 0) {
+                    const precoTotal = produto.preco * quantidade
 
-        // Resetar os campos
-        document.getElementById('codigo').value = '';
-        document.getElementById('quantidade').value = '1';
-        document.getElementById('preco_uni').value = '5.30';
-        document.getElementById('preco_total').value = '';
-        document.getElementById('subtotal').innerText = 'R$ 0,00';
-        document.getElementById('desctitulo').value = '';
-        document.getElementById('cupom').value = '';
+                    // Atualizar cupom fiscal
+                    const cupom = document.getElementById("cupom")
+                    cupom.value += `${produto.cod} - ${quantidade} UN - ${produto.nome} - R$ ${produto.preco.toFixed(2)} = R$ ${precoTotal.toFixed(2)}\n`
 
-        menufiscal.innerText = 'Venda Finalizada!';
-    }
-});
+                    // Atualizar subtotal
+                    subtotal += precoTotal
+                    document.getElementById("subtotal").innerText = `R$ ${subtotal.toFixed(2)}`
+
+                    // Limpar campos para próximo item
+                    document.getElementById("codigo").value = ""
+                    document.getElementById("quantidade").value = "1"
+                    document.getElementById("desctitulo").value = ""
+                    document.getElementById("preco_uni").value = ""
+                    document.getElementById("preco_total").value = ""
+
+                    // Focar no campo de código
+                    document.getElementById("codigo").focus()
+                } else {
+                    alert("Produto inválido ou quantidade inválida.")
+                }
+            }
+        }
+
+        // Resetar sistema e finalizar venda
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F") {
+                const menufiscal = document.getElementById("menufiscal")
+
+                // Resetar campos
+                document.getElementById("codigo").value = ""
+                document.getElementById("quantidade").value = "1"
+                document.getElementById("desctitulo").value = ""
+                document.getElementById("preco_uni").value = ""
+                document.getElementById("preco_total").value = ""
+                document.getElementById("cupom").value = ""
+                document.getElementById("subtotal").innerText = "R$ 0,00"
+
+                subtotal = 0; // Resetar subtotal
+                menufiscal.innerText = "Venda Finalizada!"
+            }
+        })
+
 
     </script>
 </body>
 </html>
+
