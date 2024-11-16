@@ -1,179 +1,395 @@
 @charset "UTF-8";
 
-header {
-    box-shadow: 0px 0.5px 1.5px 0px #4d4c4c;
-    display: flex;
-    justify-content: end;
-    margin: auto;
-    width: 850px;
-    height: 30px;
+@media screen and (max-width: 500px) {
+    header {
+        box-shadow: 0px 0.5px 1.5px 0px #4d4c4c;
+        display: flex;
+        justify-content: end;
+        margin: auto;
+        width: 850px;
+        height: 30px;
+    }
+
+    .cabecalho input {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 40px;
+        text-transform: uppercase;
+        text-align: center;
+        border: 2px solid gray;
+        border-radius: 8px;
+        position: relative;
+        top: 10px;
+        left: 15px;
+        width: 810px;
+        height: 75px;
+    }
+
+    main {
+        background-color: #f1ebeb;
+        box-shadow: 1px 1px 5px black;
+        margin-top: 10px;
+        margin: auto;
+        width: 850px;
+        height: 590px;
+    }
+
+    section {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 1em;
+    }
+
+    p {  /* todos os parafrafos */
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        margin: 0px 0px 0px 0px;
+    }
+
+    .logo {
+        background-color: transparent;
+        box-shadow: 1px 1px 5px black;
+        border-radius: 25px;
+        border: 2px solid white;
+        position: relative;
+        width: 220px;
+        height: 250px;
+    }
+
+    .containermeio {  /* logo, cod/quant/p.uni/p.total, cupom */
+        margin: 15px;
+        display: block;
+    }
+
+    .codigo, .quantidade, .precouni, .precototal {
+        background-color: #efefef;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #a09e9e;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        width: 180px;
+        height: 40px;
+    }
+
+    .cupom {  
+        text-align: justify;
+        font-size: 15px;
+        border-radius: 8px;
+        border: 2px solid #646363;
+        position: relative;
+        width: 370px;
+        height: 330px;
+        resize: none;
+        overflow-y: scroll;
+    }
+
+
+
+    footer {  /* container */
+        position: relative;
+        top: 10px;
+        display: flex; 
+        justify-content: center;
+    }
+
+    .venda {
+        background-color: #162b7d;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 40px;
+        font-weight: bolder;
+        text-align: center;
+        border: 2px solid gray;
+        border-radius: 8px;
+        margin-right: 15px;
+        width: 490px;
+        height: 50px;
+    }
+
+    .subtotal {
+        background-color: #162b7d;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 40px;
+        font-weight: bolder;
+        text-align: end;
+        text-transform: uppercase;
+        border: 2px solid gray;
+        border-radius: 8px;
+        width: 300px;
+        height: 50px;
+    }
+
+    .pfooter {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+    }
+
+    img {
+        display: block;
+        position: relative;
+        top: 20px;
+        left: 10px;
+        width: 200px;
+    }
+
+    .button {
+        background-color: #f1ebeb;
+        box-shadow: 0px 1px 1px 1px #666565;
+        border: 1px solid gray;
+        position: relative;
+        top: 5px;
+        right: 10px;
+        width: 1.5em;
+        height: 1.5em;
+        border: none;
+    }
+    .button:active {
+        width: 1.4em;
+        height: 1.4em;
+        border: 2px solid #f1ebeb;
+    }
+
+    .X {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1em;
+        height: 1.5px;
+        background-color: black;
+        transform: translateX(-50%) rotate(45deg);
+    }
+
+    .Y {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1em;
+        height: 1.5px;
+        background-color: black;
+        transform: translateX(-50%) rotate(-45deg);
+    }
 }
 
-.cabecalho input {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    font-size: 40px;
-    text-transform: uppercase;
-    text-align: center;
-    border: 2px solid gray;
-    border-radius: 8px;
-    position: relative;
-    top: 10px;
-    left: 15px;
-    width: 810px;
-    height: 75px;
-}
-
-main {
-    background-color: #f1ebeb;
-    box-shadow: 1px 1px 5px black;
-    margin-top: 10px;
-    margin: auto;
-    width: 850px;
-    height: 590px;
-}
-
-section {
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 1em;
-}
-
-p {  /* todos os parafrafos */
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    margin: 0px 0px 0px 0px;
-}
-
-.logo {
-    background-color: transparent;
-    box-shadow: 1px 1px 5px black;
-    border-radius: 25px;
-    border: 2px solid white;
-    position: relative;
-    width: 220px;
-    height: 250px;
-}
-
-.containermeio {  /* logo, cod/quant/p.uni/p.total, cupom */
-    margin: 15px;
-    display: block;
-}
-
-.codigo, .quantidade, .precouni, .precototal {
-    background-color: #efefef;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    font-size: 20px;
-    text-align: center;
-    border: 2px solid #a09e9e;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    width: 180px;
-    height: 40px;
-}
-
-.cupom {  
-    text-align: justify;
-    font-size: 15px;
-    border-radius: 8px;
-    border: 2px solid #646363;
-    position: relative;
-    width: 370px;
-    height: 330px;
-    resize: none;
-    overflow-y: scroll;
-}
 
 
+@media screen and (min-width: 992px) {
 
-footer {  /* container */
-    position: relative;
-    top: 10px;
-    display: flex; 
-    justify-content: center;
+    header {
+        background-color: red;
+        box-shadow: 0px 0.5px 1.5px 0px #4d4c4c;
+        display: flex;
+        justify-content: end;
+        margin: auto;
+        width: 100%;
+        height: 40px;
+    }
+    
+    .cabecalho input {
+        background-color: red;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 40px;
+        text-transform: uppercase;
+        text-align: center;
+        border: 2px solid gray;
+        border-radius: 8px;
+        position: relative;
+        top: 10px;
+
+        width: 1200px;
+        height: 75px;
+    }
+    
+    main {
+        background-color: #f1ebeb;
+        box-shadow: 1px 1px 5px black;
+        margin-top: 10px;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+    
+    section {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 1em;
+    }
+    
+    p {  /* todos os parafrafos */
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .logo {
+        background-color: transparent;
+        box-shadow: 1px 1px 5px black;
+        border-radius: 25px;
+        border: 2px solid white;
+        position: relative;
+        width: 220px;
+        height: 250px;
+    }
+    
+    .containermeio {  /* logo, cod/quant/p.uni/p.total, cupom */
+        margin: 15px;
+        display: block;
+    }
+    
+    .codigo, .quantidade, .precouni, .precototal {
+        background-color: #efefef;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #a09e9e;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        width: 180px;
+        height: 40px;
+    }
+    
+    .cupom {  
+        text-align: justify;
+        font-size: 15px;
+        border-radius: 8px;
+        border: 2px solid #646363;
+        position: relative;
+        width: 370px;
+        height: 330px;
+        resize: none;
+        overflow-y: scroll;
+    }
+    
+    
+    
+    footer {  /* container */
+        position: relative;
+        top: 10px;
+        display: flex; 
+        justify-content: center;
+    }
+    
+    .venda {
+        background-color: #162b7d;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 40px;
+        font-weight: bolder;
+        text-align: center;
+        border: 2px solid gray;
+        border-radius: 8px;
+        margin-right: 15px;
+        width: 490px;
+        height: 50px;
+    }
+    
+    .subtotal {
+        background-color: #162b7d;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 40px;
+        font-weight: bolder;
+        text-align: end;
+        text-transform: uppercase;
+        border: 2px solid gray;
+        border-radius: 8px;
+        width: 300px;
+        height: 50px;
+    }
+    
+    .pfooter {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+    }
+    
+    img {
+        display: block;
+        position: relative;
+        top: 20px;
+        left: 10px;
+        width: 200px;
+    }
+    
+    .button {
+        background-color: #f1ebeb;
+        box-shadow: 0px 1px 1px 1px #666565;
+        border: 1px solid gray;
+        position: relative;
+        top: 5px;
+        right: 10px;
+        width: 1.5em;
+        height: 1.5em;
+        border: none;
+    }
+    .button:active {
+        width: 1.4em;
+        height: 1.4em;
+        border: 2px solid #f1ebeb;
+    }
+    
+    .X {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1em;
+        height: 1.5px;
+        background-color: black;
+        transform: translateX(-50%) rotate(45deg);
+    }
+    
+    .Y {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1em;
+        height: 1.5px;
+        background-color: black;
+        transform: translateX(-50%) rotate(-45deg);
+    }
+
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        max-width: 100%;
+        height: 67%;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    
+    
+    /* Maximizado */
+    .modal.maximized {
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 0;
+        background-color: aqua;
+    }
 }
 
-.venda {
-    background-color: #162b7d;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
-    font-weight: bolder;
-    text-align: center;
-    border: 2px solid gray;
-    border-radius: 8px;
-    margin-right: 15px;
-    width: 490px;
-    height: 50px;
-}
 
-.subtotal {
-    background-color: #162b7d;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
-    font-weight: bolder;
-    text-align: end;
-    text-transform: uppercase;
-    border: 2px solid gray;
-    border-radius: 8px;
-    width: 300px;
-    height: 50px;
-}
-
-.pfooter {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
-}
-
-img {
-    display: block;
-    position: relative;
-    top: 20px;
-    left: 10px;
-    width: 200px;
-}
-
-.button {
-    background-color: #f1ebeb;
-    box-shadow: 0px 1px 1px 1px #666565;
-    border: 1px solid gray;
-    position: relative;
-    top: 5px;
-    right: 10px;
-    width: 1.5em;
-    height: 1.5em;
-    border: none;
-}
-.button:active {
-    width: 1.4em;
-    height: 1.4em;
-    border: 2px solid #f1ebeb;
-}
-
-.X {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1em;
-    height: 1.5px;
-    background-color: black;
-    transform: translateX(-50%) rotate(45deg);
-}
-
-.Y {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1em;
-    height: 1.5px;
-    background-color: black;
-    transform: translateX(-50%) rotate(-45deg);
-}
 

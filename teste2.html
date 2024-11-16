@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="estilo/style.css">
 </head>
 <body>
-    <main>
+    <main id="modal" class="modal">
         <header>
+            <button id="botao_max">[ ]</button>
             <button class="button">
                 <span class="X"></span>
                 <span class="Y"></span>
@@ -142,6 +143,15 @@
                 subtotal = 0; // Resetar subtotal
                 menufiscal.innerText = "Venda Finalizada!"
             }
+        })
+
+        const botao = document.getElementById("botao_max")
+        const modal = document.getElementById("modal")
+
+        // Maximizar o modal
+        botao.addEventListener("click", () => {
+            modal.classList.toggle("maximized")
+            modal.classList.remove("minimized")
         })
 
 
